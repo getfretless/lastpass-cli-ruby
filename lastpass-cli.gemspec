@@ -5,7 +5,7 @@ require 'lastpass/cli/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "lastpass-cli"
-  spec.version       = Lastpass::Cli::VERSION
+  spec.version       = Lastpass::CLI::VERSION
   spec.authors       = ["David Jones"]
   spec.email         = ["unixmonkey1@gmail.com"]
 

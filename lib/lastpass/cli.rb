@@ -1,7 +1,7 @@
 require "lastpass/cli/version"
 
 module Lastpass
-  module Cli
+  module CLI
     # Your code goes here...
   end
 end

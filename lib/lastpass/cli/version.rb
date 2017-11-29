@@ -1,5 +1,5 @@
 module Lastpass
-  module Cli
+  module CLI
     VERSION = "0.1.0"
   end
 end
