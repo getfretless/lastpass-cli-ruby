@@ -1,38 +1,50 @@
 require 'test_helper'
 
-class Lastpass::CLITest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Lastpass::CLI::VERSION
-  end
-
-  def test_configuration
-    # It returns a configuration object
-    assert Lastpass::CLI.configuration.is_a?(Lastpass::CLI::Configuration)
-
-    # It keeps track of assigned attributes
-    Lastpass::CLI.configure do |config|
-      config.login = 'Steve'
-    end
-    assert Lastpass::CLI.configuration.login == 'Steve'
-  end
-
-  def test_configure
-    Lastpass::CLI.configure do |config|
-      config.login = 'lastpassDude'
-      config.password = '!p4$5w0rd'
-    end
-
-    config = Lastpass::CLI.configuration
-    config.login = 'lastpassDude'
-    assert config.password == '!p4$5w0rd'
-  end
-
-  def test_reset_configuration
-    Lastpass::CLI.configure do |config|
-      config.login = 'lastpassDude'
-    end
-    assert_equal Lastpass::CLI.configuration.login, 'lastpassDude'
+describe Lastpass::CLI do
+  after do
     Lastpass::CLI.reset_configuration!
-    assert_nil Lastpass::CLI.configuration.login
+  end
+
+  it 'has a version number' do
+    assert ::Lastpass::CLI::VERSION != nil
+  end
+
+  describe '::configuration' do
+    it 'returns a configuration object' do
+      assert ::Lastpass::CLI.configuration.is_a?(::Lastpass::CLI::Configuration)
+    end
+
+    it 'keeps track of assigned attributes' do
+      Lastpass::CLI.configure do |config|
+        config.login = 'Steve'
+      end
+      assert_equal 'Steve', Lastpass::CLI.configuration.login
+
+      Lastpass::CLI.configuration.password = 'p4$$w0rd'
+      assert_equal 'p4$$w0rd', Lastpass::CLI.configuration.password
+    end
+  end
+
+  describe '::reset_configuration!' do
+    it 'resets the configuration' do
+      Lastpass::CLI.configure do |config|
+        config.login = 'lastpassDude'
+      end
+      assert_equal Lastpass::CLI.configuration.login, 'lastpassDude'
+      Lastpass::CLI.reset_configuration!
+      assert_nil Lastpass::CLI.configuration.login
+    end
+  end
+
+  describe '::configure' do
+    it 'accepts a block to assign configuration' do
+      Lastpass::CLI.configure do |config|
+        config.login = 'lastpassDude'
+        config.password = '!p4$5w0rd'
+      end
+      config = Lastpass::CLI.configuration
+      assert_equal '!p4$5w0rd', config.password
+      assert_equal 'lastpassDude', config.login
+    end
   end
 end

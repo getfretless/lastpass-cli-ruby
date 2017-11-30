@@ -1,16 +1,11 @@
 require 'test_helper'
 
-class Lastpass::CLI::ConfigurationTest < Minitest::Test
-  def test_block_configuration
-    Lastpass::CLI.configure do |config|
-      config.login = 'Dave'
-    end
-    assert Lastpass::CLI.configuration.login == 'Dave'
-  end
-
-  def test_object_configuration
+describe Lastpass::CLI::Configuration do
+  it 'stores configuration values' do
     config = Lastpass::CLI::Configuration.new
     config.password = 'H3yBUddy'
-    assert config.password = 'H3yBuddy'
+    assert_equal 'H3yBUddy', config.password
+    config.login = 'Dave'
+    assert_equal 'Dave', config.login
   end
 end
