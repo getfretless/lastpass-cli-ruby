@@ -16,9 +16,9 @@ describe Lastpass::CLI do
 
     it 'keeps track of assigned attributes' do
       Lastpass::CLI.configure do |config|
-        config.login = 'Steve'
+        config.username = 'Steve'
       end
-      assert_equal 'Steve', Lastpass::CLI.configuration.login
+      assert_equal 'Steve', Lastpass::CLI.configuration.username
 
       Lastpass::CLI.configuration.password = 'p4$$w0rd'
       assert_equal 'p4$$w0rd', Lastpass::CLI.configuration.password
@@ -28,23 +28,23 @@ describe Lastpass::CLI do
   describe '::reset_configuration!' do
     it 'resets the configuration' do
       Lastpass::CLI.configure do |config|
-        config.login = 'lastpassDude'
+        config.username = 'lastpassDude'
       end
-      assert_equal Lastpass::CLI.configuration.login, 'lastpassDude'
+      assert_equal Lastpass::CLI.configuration.username, 'lastpassDude'
       Lastpass::CLI.reset_configuration!
-      assert_nil Lastpass::CLI.configuration.login
+      assert_nil Lastpass::CLI.configuration.username
     end
   end
 
   describe '::configure' do
     it 'accepts a block to assign configuration' do
       Lastpass::CLI.configure do |config|
-        config.login = 'lastpassDude'
+        config.username = 'lastpassDude'
         config.password = '!p4$5w0rd'
       end
       config = Lastpass::CLI.configuration
       assert_equal '!p4$5w0rd', config.password
-      assert_equal 'lastpassDude', config.login
+      assert_equal 'lastpassDude', config.username
     end
   end
 end

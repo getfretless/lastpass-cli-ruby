@@ -5,7 +5,7 @@ describe Lastpass::CLI::Configuration do
     config = Lastpass::CLI::Configuration.new
     config.password = 'H3yBUddy'
     assert_equal 'H3yBUddy', config.password
-    config.login = 'Dave'
-    assert_equal 'Dave', config.login
+    config.username = 'Dave'
+    assert_equal 'Dave', config.username
   end
 end
