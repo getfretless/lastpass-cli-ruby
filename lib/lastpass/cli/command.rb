@@ -32,6 +32,12 @@ module Lastpass
         args << "--sync=#{sync}"
         args
       end
+
+      def status(quiet: false)
+        args = ['status']
+        args << '--quiet' if quiet
+        args
+      end
     end
   end
 end

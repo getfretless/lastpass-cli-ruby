@@ -5,11 +5,10 @@ module Lastpass
 
       def initialize
         @config = Lastpass::CLI.configuration
-        @logged_in = false
       end
 
       def login
-        return true if @logged_in
+        return true if logged_in?
         command = [config.executable]
         command += Command.new.login(username: config.username)
         out, _, _ = Open3.capture2e(
@@ -21,11 +20,22 @@ module Lastpass
       end
 
       def logout
-        return true if !@logged_in
+        return true if logged_out?
         command = [config.executable]
         command += Command.new.logout
         out, _, _ = Open3.capture2e(*command)
-        @logged_in = !!out.match('Log out: complete')
+        !!out.match('Log out: complete')
+      end
+
+      def logged_in?
+        command = [config.executable]
+        command += Command.new.status
+        out, _, _ = Open3.capture2e(*command)
+        !!out.match('Logged in as')
+      end
+
+      def logged_out?
+        !logged_in?
       end
     end
   end
