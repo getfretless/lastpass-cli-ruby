@@ -24,7 +24,12 @@ module Lastpass
       if !out.nil? && out != ""
         out.each_line do |line|
           match_data = line.match(/(?<modified_at>\d{4}-\d{2}-\d{2} \d{2}:\d{2}) (?<folder>.+)\/(?<name>.+) \[id: (?<id>.*)\] \[username:\s?(?<username>.+)\]/)
-          items << Item.new(match_data)
+          attributes = Hash[match_data.names.zip(match_data.captures)]
+          items << Item.new(attributes)
+        end
+      end
+      items
+    end
         end
       end
       items

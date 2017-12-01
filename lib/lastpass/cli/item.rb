@@ -1,13 +1,23 @@
 module Lastpass
   module CLI
     class Item
-      attr_accessor :id, :name, :folder, :username, :modified_at
+
+      def self.attributes
+        %w[id name folder username modified_at password notes]
+      end
+
+      attr_accessor *attributes
+
       def initialize(attrs)
-        self.id = attrs['id']
-        self.name = attrs['name']
-        self.username = attrs['username']
-        self.folder = attrs['folder']
-        self.modified_at = attrs['modified_at']
+        attrs.each do |k, v|
+          set(k.to_s, v)
+        end
+      end
+
+      def set(attribute, value)
+        if self.class.attributes.include?(attribute)
+          send("#{attribute}=", value)
+        end
       end
     end
   end
