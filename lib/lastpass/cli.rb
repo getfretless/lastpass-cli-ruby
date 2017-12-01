@@ -30,6 +30,19 @@ module Lastpass
       end
       items
     end
+
+    def self.show(name)
+      items = []
+      out = Command.run(Command.new.show(name: name))
+      if !out.nil? && out != ""
+        out.each_line do |line|
+          id_match = line.match(/^((?<folder>.*)\/)?(?<name>.*) \[id: (?<id>.*)\]/)
+          if id_match
+            items << Item.new(id: id_match[:id], folder: id_match[:folder], name: id_match[:name])
+          else
+            match_data = line.match(/^(?<key>.*): (?<value>.*)$/)
+            items.last.set(match_data[:key].downcase, match_data[:value])
+          end
         end
       end
       items

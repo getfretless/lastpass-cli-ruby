@@ -38,6 +38,15 @@ module Lastpass
         args << '--quiet' if quiet
         args
       end
+
+      def show(name:, sync: 'now', expand_multi: true)
+        raise unless %w[auto now no].include?(sync)
+        args = ['show', '--all']
+        args << "--sync=#{sync}"
+        args << '--expand-multi' if expand_multi
+        args << name
+        args
+      end
     end
   end
 end
