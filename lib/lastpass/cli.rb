@@ -1,5 +1,6 @@
 require "lastpass/cli/version"
 require "lastpass/cli/configuration"
+require "lastpass/cli/agent"
 require "lastpass/cli/command"
 require "lastpass/cli/item"
 
@@ -19,8 +20,7 @@ module Lastpass
 
     def self.items
       items = []
-      command = Command.new
-      out, err = command.ls
+      out = Command.run(Command.new.ls)
       if !out.nil? && out != ""
         out.each_line do |line|
           match_data = line.match(/(?<modified_at>\d{4}-\d{2}-\d{2} \d{2}:\d{2}) (?<folder>.+)\/(?<name>.+) \[id: (?<id>.*)\] \[username:\s?(?<username>.+)\]/)
