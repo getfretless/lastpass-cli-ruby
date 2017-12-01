@@ -47,11 +47,11 @@ module Lastpass
 
       private
 
-      def exec_command!(args, env={})
+      def exec_command!(args)
         command = ['lpass']
         command += args
-        err, out = Open3.popen3(env, command.join(' ')) do |_stdin, stdout, stderr|
-          [stderr.read, stdout.read]
+        out, err = Open3.popen3(*command) do |_stdin, stdout, stderr|
+          [stdout.read, stderr.read]
         end
         [out, err]
       rescue StandardError => e
