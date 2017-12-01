@@ -12,15 +12,15 @@ module Lastpass
       end
 
       def login(username:, trust: false, plaintext_key: false, force: false)
-        args = [
-          'login',
-          username,
-          "<< LASTPASSPASSHEREDOC\n#{config.password}\nLASTPASSPASSHEREDOC"
-        ]
+        args = ['lpass', 'login', username]
         args << '--plaintext-key' if plaintext_key
         args << '--force' if force
 
-        out, err = exec_command!(args, { 'LPASS_DISABLE_PINENTRY' => '1' })
+        out, _, _ = Open3.capture2e(
+          { 'LPASS_DISABLE_PINENTRY' => '1' },
+          args.join(' '),
+          stdin_data: "#{config.password}\n"
+        )
         if out.match('Success: Logged in')
           @logged_in = true
         else
