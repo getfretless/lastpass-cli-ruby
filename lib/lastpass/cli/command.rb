@@ -3,11 +3,11 @@ require 'open3'
 module Lastpass
   module CLI
     class Command
-      def self.run(args)
+      def self.run(args, stdin_data: nil)
         Agent.new.login
         command = [Lastpass::CLI.configuration.executable]
         command += args
-        out, _, _ = Open3.capture2e(*command)
+        out, _, _ = Open3.capture2e(*command, stdin_data: stdin_data)
         out
       rescue StandardError => e
         raise "Failed to execute:\n#{command}\nError: #{e}"
