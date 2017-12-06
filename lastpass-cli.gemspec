@@ -6,12 +6,12 @@ require 'lastpass_cli/version'
 Gem::Specification.new do |spec|
   spec.name          = "lastpass-cli"
   spec.version       = LastpassCLI::VERSION
-  spec.authors       = ["David Jones"]
-  spec.email         = ["unixmonkey1@gmail.com"]
+  spec.authors       = ["David Jones", "Dave Strus"]
+  spec.email         = ["unixmonkey1@gmail.com", "dave@getfretless.com"]
 
   spec.summary       = %q{A Ruby wrapper for the LastPass CLI}
   spec.description   = %q{A Ruby wrapper for the LastPass CLI}
-  spec.homepage      = "https://github.com/unixmonkey/lastpass-cli-ruby"
+  spec.homepage      = "https://github.com/getfretless/lastpass-cli-ruby"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
