@@ -53,5 +53,14 @@ module Lastpass
       stdin_data << "Notes:\n#{notes}\n" if notes
       Command.run(Command.new.add(name: name), stdin_data: stdin_data)
     end
+
+    def self.add_note(name, note_type: nil, notes: nil, data: {})
+      stdin_data = ""
+      data.each do |field, value|
+        stdin_data << "#{field.capitalize}:#{value}\n"
+      end
+      stdin_data << "Notes:\n#{notes}\n"
+      Command.run(Command.new.add(name: name, note_type: note_type), stdin_data: stdin_data)
+    end
   end
 end
