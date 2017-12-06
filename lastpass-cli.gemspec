@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'lastpass/cli/version'
+require 'lastpass_cli/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "lastpass-cli"
-  spec.version       = Lastpass::CLI::VERSION
+  spec.version       = LastpassCLI::VERSION
   spec.authors       = ["David Jones"]
   spec.email         = ["unixmonkey1@gmail.com"]
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "lastpass/cli"
+require "lastpass_cli"
 require "pry"
 
 # You can add fixtures and/or initialization code here to make experimenting

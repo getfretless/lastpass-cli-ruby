@@ -1,8 +1,8 @@
 require 'test_helper'
 
-describe Lastpass::CLI::Configuration do
+describe LastpassCLI::Configuration do
   it 'stores configuration values' do
-    config = Lastpass::CLI::Configuration.new
+    config = LastpassCLI::Configuration.new
     config.password = 'H3yBUddy'
     assert_equal 'H3yBUddy', config.password
     config.username = 'Dave'
