@@ -3,7 +3,7 @@ module Lastpass
     class Item
 
       def self.attributes
-        %w[id name folder username modified_at password notes]
+        %w[id name folder username modified_at password notes number]
       end
 
       attr_accessor *attributes
