@@ -1,8 +1,8 @@
-require "lastpass_cli/version"
-require "lastpass_cli/configuration"
-require "lastpass_cli/agent"
-require "lastpass_cli/command"
-require "lastpass_cli/item"
+require "lastpass-cli/version"
+require "lastpass-cli/configuration"
+require "lastpass-cli/agent"
+require "lastpass-cli/command"
+require "lastpass-cli/item"
 
 module LastpassCLI
   def self.configuration
