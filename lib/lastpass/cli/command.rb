@@ -47,6 +47,14 @@ module Lastpass
         args << name
         args
       end
+
+      def add(name:, sync: 'now', note_type: nil)
+        raise unless %w[auto now no].include?(sync)
+        args = ['add', '--non-interactive']
+        args << "--sync=#{sync}"
+        args << "--note-type=#{note_type}" if note_type
+        args << name
+      end
     end
   end
 end

@@ -47,5 +47,11 @@ module Lastpass
       end
       items
     end
+
+    def self.add_password(name, username:, password:, notes: nil)
+      stdin_data = "Username:#{username}\nPassword:#{password}\n"
+      stdin_data << "Notes:\n#{notes}\n" if notes
+      Command.run(Command.new.add(name: name), stdin_data: stdin_data)
+    end
   end
 end
