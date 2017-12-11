@@ -33,7 +33,7 @@ module LastpassCLI
   def self.show(name)
     items = []
     out = Command.run(Command.new.show(name: name))
-    if !out.nil? && out != ""
+    if !out.nil? && out != "" && !out.start_with?("Error: ")
       out.each_line do |line|
         id_match = line.match(/^((?<folder>.*)\/)?(?<name>.*) \[id: (?<id>.*)\]/)
         if id_match
