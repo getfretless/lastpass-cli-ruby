@@ -17,5 +17,11 @@ module LastpassCLI
         send("#{attribute}=", value)
       end
     end
+
+    def to_h
+      self.class.attributes.each_with_object({}) do |attr, hsh|
+        hsh[attr] = send(attr)
+      end
+    end
   end
 end
