@@ -51,6 +51,7 @@ module LastpassCLI
     stdin_data = "Username:#{username}\nPassword:#{password}\n"
     stdin_data << "Notes:\n#{notes}\n" if notes
     Command.run(Command.new.add(name: name), stdin_data: stdin_data)
+    show(name)
   end
 
   def self.add_note(name, note_type: nil, notes: nil, data: {})
