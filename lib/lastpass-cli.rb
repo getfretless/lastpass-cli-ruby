@@ -33,7 +33,7 @@ module LastpassCLI
   def self.show(name)
     items = []
     out = Command.run(Command.new.show(name: name))
-    if !out.nil? && out != ""
+    if !out.nil? && out != "" && !out.start_with?("Error: ")
       out.each_line do |line|
         id_match = line.match(/^((?<folder>.*)\/)?(?<name>.*) \[id: (?<id>.*)\]/)
         if id_match
@@ -51,6 +51,7 @@ module LastpassCLI
     stdin_data = "Username:#{username}\nPassword:#{password}\n"
     stdin_data << "Notes:\n#{notes}\n" if notes
     Command.run(Command.new.add(name: name), stdin_data: stdin_data)
+    show(name)
   end
 
   def self.add_note(name, note_type: nil, notes: nil, data: {})
