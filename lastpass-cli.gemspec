@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A Ruby wrapper for the LastPass CLI}
   spec.description   = %q{A Ruby wrapper for the LastPass CLI}
-  spec.homepage      = "https://github.com/getfretless/lastpass-cli-ruby"
+  spec.homepage      = "https://github.com/QuantifiAi/lastpass-cli-ruby"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
